@@ -1,0 +1,105 @@
+.app_box{
+  display: flex;
+  flex-direction: column;
+}
+
+.nav_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 2px solid gainsboro;
+}
+
+.nav_box > p {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  margin-left: 2.3rem;
+}
+
+.nav_box > input{
+  margin-right: 8rem;
+  margin-top: 1.5rem;
+  height: 3.5rem;
+  width: 38rem;
+  padding: 0rem 1.5rem;
+  background-color: rgb(247, 247, 247);
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+
+}
+
+.btn_box{
+  display: flex;
+  flex-direction: row;
+  gap: 2.2rem;
+  justify-content: center;
+  align-self: center;
+  margin-right: 3rem;
+
+}
+
+.btn_box > button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+}
+
+.btn_box > div {
+  font-weight: 450;
+  border-radius: 120%;
+  background-color: rgb(209, 124, 209);
+  padding: 0.5rem 0.8rem;
+  color: white;
+}
+
+.main_input_box{
+  display: flex;
+  justify-content: center;
+  margin: 2em;
+  margin-top: 1.4em;
+}
+
+.main_input_box > textarea {
+  border: 1.5px solid #ccc;
+  border-radius: 3px;
+  width: 38rem;
+  height: 6rem;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.main_input_box > button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+
+}
+
+.notes_box {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 2em;
+}
+
+.notes_box > textarea {
+  width: 18rem;
+  height: 16rem;
+}
+
+.notes_box_toggled {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-self: center;
+  gap: 0.7rem;
+  margin: 2em 10em;
+}
+
+.notes_box_toggled > textarea {
+  width: 45rem;
+  height: 16rem;
+}
+
