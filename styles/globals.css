@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 a {
@@ -17,10 +16,14 @@ a {
 
 textarea {
   resize: none;
-  padding: 1rem 1rem;
+  padding: 1.4rem 1.2rem;
 }
 
 textarea:focus{
+  outline: none;
+}
+
+input:focus {
   outline: none;
 }
 

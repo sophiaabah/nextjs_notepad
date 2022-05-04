@@ -21,18 +21,36 @@ export default function Notes() {
         </div>
       </nav>
       <div className={styles.main_input_box}>
-        <textarea placeholder="Take a note..."></textarea>
-        <button>
-          <i className="gg-check-r"></i>
-        </button>
+        <div className={styles.main_input_box_div}>
+          <textarea placeholder="Take a note..."></textarea>
+          <button>Save</button>
+        </div>
       </div>
       <div className={styles.notes_box}>
-        <textarea></textarea>
-        <textarea></textarea>
-        <textarea></textarea>
-        <textarea></textarea>
-        <textarea></textarea>
-        <textarea></textarea>
+        <textarea
+          style={{
+            border: "none",
+            backgroundColor: "beige",
+          }}
+        ></textarea>
+        <textarea
+          style={{
+            border: "none",
+            backgroundColor: "aliceblue",
+          }}
+        ></textarea>
+        <textarea
+          style={{
+            border: "none",
+            backgroundColor: "wheat",
+          }}
+        ></textarea>
+        <textarea
+          style={{
+            border: "none",
+            backgroundColor: "lavenderblush",
+          }}
+        ></textarea>
       </div>
     </div>
   );
