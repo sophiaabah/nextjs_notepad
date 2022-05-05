@@ -14,9 +14,6 @@ export default function Notes() {
           <button>
             <i className="gg-upload-list"></i>
           </button>
-          <button>
-            <i className="gg-layout-list"></i>
-          </button>
           <div>S</div>
         </div>
       </nav>

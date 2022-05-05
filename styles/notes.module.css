@@ -1,6 +1,7 @@
 .app_box{
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .nav_box {
@@ -13,11 +14,11 @@
 .nav_box > p {
   font-family: 'Pacifico', cursive;
   font-size: 2rem;
-  margin-left: 2.3rem;
+  margin-left: 2rem;
 }
 
 .nav_box > input{
-  margin-top: 1.3rem;
+  margin: 1.3rem 1rem;
   height: 3.5rem;
   width: 28rem;
   padding: 0rem 1.5rem;
@@ -33,7 +34,7 @@
   gap: 2.2rem;
   justify-content: center;
   align-self: center;
-  margin-right: 3rem;
+  margin-right: 1.5rem;
 
 }
 
@@ -61,34 +62,34 @@
 
 .main_input_box_div {
   display: flex;
-  flex-direction: row;
-  border: 1.5px solid #ccc;
-  border-radius: 6px;
+  flex-direction: column;
+  border: 1.5px solid rgba(138, 124, 124, 0.2);
+  border-radius: 7px;
   width: 38rem;
   height: 15rem;
-  box-shadow: 0px 1px 3px 0px rgba(95, 84, 84, 0.2);
+  box-shadow: 0px 1px 5px 0px rgba(138, 124, 124, 0.2);
 }
 
 .main_input_box_div > textarea {
   border: none;
-  width: 39rem;
+  width: 36rem;
   height: 14rem;
   font-family: 'Handlee', cursive;
-  font-size: 1.35em;
+  font-size: 1.1em;
 
 }
 
 
 .main_input_box_div > button {
   background-color: transparent;
-  border: 1.5px solid gainsboro;
-  border-radius: 4px;
+  /* border: 1.5px solid gainsboro;
+  border-radius: 4px; */
+  border: none;
+  text-decoration: underline;
   cursor: pointer;
   align-self: flex-end;
   padding: 0.5rem 1rem;
   margin: 1rem 0.8rem;
-
-  /* text-decoration: underline; */
 
 }
 
@@ -104,7 +105,7 @@
   width: 19.5rem;
   height: 16rem;
   font-family: 'Handlee', cursive;
-  font-size: 1.38em;
+  font-size: 1.2em;
   border: 1px solid transparent;
   border-radius: 7px;
 }
@@ -123,3 +124,54 @@
   height: 16rem;
 }
 
+@media only screen and (max-width: 550px) {
+
+  .nav_box {
+    width: fit-content;
+    border-bottom: 1.8px solid gainsboro;
+  }
+  
+  .nav_box > p {
+    font-size: 1.6rem;
+    margin-left: 1.5rem;
+    align-self: center;
+  }
+  
+  .nav_box > input {
+    height: 3rem;
+    width: 16rem;
+    padding: 0rem 1rem;
+    margin: 1.6rem 1.8rem;
+    font-size: 1.1rem;
+  }
+
+  .main_input_box {
+    width: fit-content;
+  }
+
+  .main_input_box_div {
+    margin-left: 0.5rem;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .main_input_box_div > textarea {
+    width: 28rem;
+    height: 7rem;
+    font-size: 1.4rem;
+  }
+
+  .notes_box{
+    box-sizing: content-box;
+    margin: 0rem 1.7rem;
+    width: 30rem;
+
+  }
+
+  .notes_box > textarea {
+    width: 30rem;
+    height: 17rem;
+    font-size: 1.3rem;
+  }
+
+}
