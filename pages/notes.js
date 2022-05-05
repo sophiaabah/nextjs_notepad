@@ -1,6 +1,7 @@
 import styles from "../styles/notes.module.css";
 import Head from "next/head";
 import { GrSync } from "react-icons/gr";
+import { IoMdAdd } from "react-icons/io";
 
 export default function Notes() {
   return (
@@ -21,7 +22,9 @@ export default function Notes() {
       <div className={styles.main_input_box}>
         <div className={styles.main_input_box_div}>
           <textarea placeholder="Take a note..."></textarea>
-          <button>Save</button>
+          <button title="Add a new note">
+            <IoMdAdd style={{ fontSize: "1.2rem" }} />
+          </button>
         </div>
       </div>
       <div className={styles.notes_box}>
