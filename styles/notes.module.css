@@ -54,12 +54,12 @@
   color: white;
 }
 
-.main_input_box{
+.main_input_box {
   display: flex;
   justify-content: center;
   align-self: center;
   margin: 2em;
-  margin-top: 2em;
+  margin-bottom: 3rem;
 }
 
 .main_input_box_div {
@@ -90,7 +90,7 @@
   text-decoration: underline;
   cursor: pointer;
   align-self: flex-end;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.8rem;
   margin: 1rem 0.8rem;
 
 }
@@ -101,7 +101,6 @@
   justify-content: center;
   align-self: center;
   gap: 0.7rem;
-  margin: 1.5em;
 }
 
 .notes_box > textarea {
@@ -157,7 +156,6 @@
   }
 
   .main_input_box_div {
-    margin-left: 0.5rem;
     width: fit-content;
     height: fit-content;
   }
