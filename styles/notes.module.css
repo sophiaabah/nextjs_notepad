@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1.8px solid gainsboro;
 }
 
@@ -18,7 +19,6 @@
 }
 
 .nav_box > input {
-  margin: 1.3rem 1rem;
   height: 3.5rem;
   width: 28rem;
   padding: 0rem 1.5rem;
@@ -77,8 +77,8 @@
   width: 36rem;
   height: 12rem;
   font-family: 'Handlee', cursive;
-  font-size: 1.1em;
-
+  font-size: 1.3em;
+  font-weight: 550;
 }
 
 
@@ -107,9 +107,10 @@
   width: 19.5rem;
   height: 16rem;
   font-family: 'Handlee', cursive;
-  font-size: 1.2em;
+  font-size: 1.3em;
   border: 1px solid transparent;
   border-radius: 7px;
+  font-weight: 550;
 }
 
 .notes_box_toggled {
@@ -163,7 +164,7 @@
   .main_input_box_div > textarea {
     width: 28rem;
     height: 7rem;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
   }
 
   .notes_box {
@@ -173,7 +174,7 @@
   .notes_box > textarea {
     width: 30rem;
     height: 17rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
 }
