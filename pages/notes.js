@@ -12,7 +12,7 @@ export default function Notes() {
         <p>keeper.</p>
         <input placeholder="Search" />
         <div className={styles.btn_box}>
-          <button>
+          <button title="Sync Changes">
             <GrSync style={{ fontSize: "1.3rem" }} />
           </button>
           <div>S</div>

@@ -84,10 +84,8 @@
 
 .main_input_box_div > button {
   background-color: transparent;
-  /* border: 1.5px solid gainsboro;
-  border-radius: 4px; */
-  border: none;
-  text-decoration: underline;
+  border: 1.7px solid #ccc;
+  border-radius: 4px;
   cursor: pointer;
   align-self: flex-end;
   padding: 0.5rem 0.8rem;
