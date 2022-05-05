@@ -92,6 +92,7 @@
   align-self: flex-end;
   padding: 0.5rem 0.8rem;
   margin: 1rem 0.8rem;
+  font-size: 1.16rem;
 
 }
 
@@ -166,6 +167,10 @@
     height: 7rem;
     font-size: 1.45rem;
     font-weight: 600;
+  }
+
+  .main_input_box_div > button {
+    font-size: 1.2rem;
   }
 
   .notes_box {
