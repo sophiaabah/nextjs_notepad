@@ -166,7 +166,8 @@
     width: 28rem;
     height: 7rem;
     font-size: 1.45rem;
-    font-weight: 600;
+    /* font-weight: 600; */
+    line-height: 2rem;
   }
 
   .main_input_box_div > button {
@@ -180,8 +181,9 @@
   .notes_box > textarea {
     width: 30rem;
     height: 17rem;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    /* font-weight: 600; */
+    line-height: 2.4rem;
   }
 
 }
