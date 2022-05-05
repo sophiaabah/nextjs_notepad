@@ -1,5 +1,6 @@
 import styles from "../styles/notes.module.css";
 import Head from "next/head";
+import { GrSync } from "react-icons/gr";
 
 export default function Notes() {
   return (
@@ -12,7 +13,7 @@ export default function Notes() {
         <input placeholder="Search" />
         <div className={styles.btn_box}>
           <button>
-            <i className="gg-upload-list"></i>
+            <GrSync style={{ fontSize: "1.3rem" }} />
           </button>
           <div>S</div>
         </div>

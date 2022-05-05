@@ -28,6 +28,7 @@ input:focus {
 }
 
 
+
 .gg-upload-list {
   box-sizing: border-box;
   position: relative;
@@ -95,3 +96,4 @@ input:focus {
   transform-origin: bottom left;
   transform: rotate(45deg)
 }
+
