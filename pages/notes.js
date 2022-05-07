@@ -2,8 +2,12 @@ import styles from "../styles/notes.module.css";
 import Head from "next/head";
 import { GrSync } from "react-icons/gr";
 import { IoMdAdd } from "react-icons/io";
+import { useState } from "react";
+import NoteBody from "../components/body";
 
 export default function Notes() {
+  const [userInfo, setUserInfo] = useState({});
+
   return (
     <div className={styles.app_box}>
       <Head>
@@ -19,40 +23,7 @@ export default function Notes() {
           <div>S</div>
         </div>
       </nav>
-      <div className={styles.main_input_box}>
-        <div className={styles.main_input_box_div}>
-          <textarea placeholder="Take a note..."></textarea>
-          <button title="Add a new note">
-            <IoMdAdd style={{ fontSize: "1.2rem" }} />
-          </button>
-        </div>
-      </div>
-      <div className={styles.notes_box}>
-        <textarea
-          style={{
-            border: "none",
-            backgroundColor: "beige",
-          }}
-        ></textarea>
-        <textarea
-          style={{
-            border: "none",
-            backgroundColor: "aliceblue",
-          }}
-        ></textarea>
-        <textarea
-          style={{
-            border: "none",
-            backgroundColor: "wheat",
-          }}
-        ></textarea>
-        <textarea
-          style={{
-            border: "none",
-            backgroundColor: "lavenderblush",
-          }}
-        ></textarea>
-      </div>
+      <NoteBody userInfo={userInfo} />
     </div>
   );
 }

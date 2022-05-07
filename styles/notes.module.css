@@ -60,16 +60,19 @@
   align-self: center;
   margin: 2em;
   margin-bottom: 3rem;
+  height: fit-content;
+  width: fit-content;
+  border: 1.5px solid rgba(138, 124, 124, 0.2);
+  border-radius: 7px;
+  box-shadow: 0px 1px 5px 0px rgba(138, 124, 124, 0.2);
 }
 
 .main_input_box_div {
   display: flex;
   flex-direction: column;
-  border: 1.5px solid rgba(138, 124, 124, 0.2);
-  border-radius: 7px;
+  border: none;
   width: fit-content;
   height: fit-content;
-  box-shadow: 0px 1px 5px 0px rgba(138, 124, 124, 0.2);
 }
 
 .main_input_box_div > textarea {
@@ -101,29 +104,36 @@
   gap: 0.7rem;
 }
 
-.notes_box > textarea {
-  width: 19.5rem;
+.notes_box_div {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid transparent;
+  border-radius: 7px;
+}
+
+.notes_box_div > textarea {
+  width: 17.5rem;
   height: 16rem;
   font-family: 'Handlee', cursive;
   font-size: 1.3em;
-  border: 1px solid transparent;
-  border-radius: 7px;
   font-weight: 550;
+  border: none;
 }
 
-.notes_box_toggled {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-self: center;
-  gap: 0.7rem;
-  margin: 2em 10em;
+.notes_box_div > button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  align-self: flex-start;
+  margin: 4px 0px;
+  /* margin: 2px 1px; */
+  /* padding: 0.5rem 0.8rem;
+  margin: 1rem 0.8rem; */
 }
 
-.notes_box_toggled > textarea {
-  width: 45rem;
-  height: 16rem;
-}
+
 
 @media only screen and (max-width: 550px) {
 
@@ -175,8 +185,8 @@
     width: 30rem;
   }
 
-  .notes_box > textarea {
-    width: 30rem;
+  .notes_box_div > textarea {
+    width: 28.5rem;
     height: 17rem;
     font-size: 1.6rem;
     /* font-weight: 600; */
