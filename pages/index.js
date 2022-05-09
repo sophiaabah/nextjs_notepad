@@ -1,7 +1,6 @@
 import styles from "../styles/notes.module.css";
 import Head from "next/head";
 import { GrSync } from "react-icons/gr";
-import { IoMdAdd } from "react-icons/io";
 import { TiDelete } from "react-icons/ti";
 import { nanoid } from "nanoid";
 import { useState } from "react";
@@ -78,7 +77,7 @@ export default function Notes() {
             value={value}
           ></textarea>
           <button onClick={newNote} title="Add a new note">
-            <IoMdAdd style={{ fontSize: "1.2rem" }} />
+            Save
           </button>
         </div>
       </div>
