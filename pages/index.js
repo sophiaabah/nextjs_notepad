@@ -4,6 +4,7 @@ import { GrSync } from "react-icons/gr";
 import { TiDelete } from "react-icons/ti";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Notes() {
   const colorArr = [
@@ -27,13 +28,22 @@ export default function Notes() {
   const [value, setValue] = useState("");
   const [notes, setNotes] = useState([]);
 
+  useEffect(() => {
+    const notesFromStorage = JSON.parse(localStorage.getItem("notes"));
+    if (notesFromStorage !== null) {
+      setNotes(notesFromStorage);
+    }
+  }, []);
+
   function newNote() {
     if (value.trim()) {
       var newObj = {
         text: value,
         id: nanoid(),
       };
-      setNotes((prev) => [newObj, ...prev]);
+      let clone = [newObj, ...notes];
+      setNotes(clone);
+      localStorage.setItem("notes", JSON.stringify(clone));
     }
     setValue("");
   }
@@ -46,12 +56,14 @@ export default function Notes() {
     let clone = [...notes];
     clone[i].text = e.target.value;
     setNotes(clone);
+    localStorage.setItem("notes", JSON.stringify(clone));
   }
 
   function onDelete(i) {
-    let copy = [...notes];
-    copy.splice(i, 1);
-    setNotes(copy);
+    let clone = [...notes];
+    clone.splice(i, 1);
+    setNotes(clone);
+    localStorage.setItem("notes", JSON.stringify(clone));
   }
 
   return (
