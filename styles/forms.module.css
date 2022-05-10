@@ -1,0 +1,41 @@
+.signin_box{
+  background: linear-gradient(350deg, #f3bbbb 0%, #f8e0a4 32.16%, #ffeab3 46.17%, #FFF1CD 61.09%);  
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+.register_box {
+background: linear-gradient(350deg, #FACC57 1.08%, #FFE8AC 18.78%, #FFF0CA 33.85%, #fff7e2 56.87%);  
+height: 100vh;
+font-family: 'Poppins', sans-serif;
+
+}
+
+.signin_box > main{
+  padding-top: 9rem;
+}
+ 
+.register_box > main {
+  padding-top: 9rem;
+}
+
+.btn{
+  background-color: transparent;
+  border: 1.2px solid palevioletred;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.4rem 1.3rem;
+  font-size: 0.95rem;
+  
+    
+}
+
+.input{
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid palevioletred;
+  width: 100%;
+  line-height: 1.5;
+  padding: 0.4rem;
+}

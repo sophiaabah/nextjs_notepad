@@ -32,17 +32,28 @@
   display: flex;
   flex-direction: row;
   gap: 2.2rem;
-  justify-content: center;
   align-self: center;
   margin-right: 1.5rem;
 
 }
 
-.btn_box > button {
+.btn_box_btn1 {
   background-color: transparent;
   border: none;
   cursor: pointer;
   align-self: flex-end;
+  font-size: "1.3rem"
+
+}
+
+.btn_box_btn2 {
+  background-color: transparent;
+  border: 1.5px solid palevioletred;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+  font-size: 0.9rem;
+  padding: 0.4rem 1.3rem;
 
 }
 
@@ -79,21 +90,23 @@
   border: none;
   width: 36rem;
   height: 12rem;
-  font-family: 'Handlee', cursive;
+  line-height: 1.4rem;
+  font-size: 1.1em;
+  /* font-family: 'Handlee', cursive;
   font-size: 1.3em;
-  font-weight: 550;
+  font-weight: 550; */
 }
 
 
 .main_input_box_div > button {
   background-color: transparent;
-  border: 1.7px solid #ccc;
+  border: 1.2px solid palevioletred;
   border-radius: 5px;
   cursor: pointer;
   align-self: flex-end;
-  padding: 0.5rem 0.8rem;
+  padding: 0.4rem 1.3rem;
   margin: 1rem 0.8rem;
-  font-size: 1.16rem;
+  font-size: 0.95rem;
 }
 
 .notes_box {
@@ -116,10 +129,11 @@
 .notes_box_div > textarea {
   width: 17.5rem;
   height: 16rem;
-  font-family: 'Handlee', cursive;
+  /* font-family: 'Handlee', cursive;
   font-size: 1.3em;
-  font-weight: 550;
+  font-weight: 550; */
   border: none;
+  line-height: 1.5rem;
 }
 
 .notes_box_div > button {
@@ -160,6 +174,15 @@
     font-size: 1.1rem;
   }
 
+  /* .btn_box{
+    margin-right: 0rem;
+  } */
+    .btn_box_btn2 {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+  
+    }
+
   .main_input_box {
     width: fit-content;
   }
@@ -172,9 +195,9 @@
   .main_input_box_div > textarea {
     width: 28rem;
     height: 7rem;
-    font-size: 1.45rem;
-    /* font-weight: 600; */
-    line-height: 2rem;
+    /* font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 2rem; */
   }
 
   .main_input_box_div > button {
@@ -188,9 +211,10 @@
   .notes_box_div > textarea {
     width: 28.5rem;
     height: 17rem;
-    font-size: 1.6rem;
-    /* font-weight: 600; */
-    line-height: 2.4rem;
+    font-size: 1.2rem;
+    /* font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2.4rem; */
   }
 
 }

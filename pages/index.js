@@ -1,5 +1,6 @@
 import styles from "../styles/notes.module.css";
 import Head from "next/head";
+import Link from "next/link";
 import { GrSync } from "react-icons/gr";
 import { TiDelete } from "react-icons/ti";
 import { nanoid } from "nanoid";
@@ -75,10 +76,12 @@ export default function Notes() {
         <p>keeper.</p>
         <input placeholder="Search" />
         <div className={styles.btn_box}>
-          <button title="Sync Changes">
-            <GrSync style={{ fontSize: "1.3rem" }} />
+          <button className={styles.btn_box_btn1} title="Sync Changes">
+            <GrSync />
           </button>
-          <div>S</div>
+          <Link href="/register">
+            <a className={styles.btn_box_btn2}>Sign up</a>
+          </Link>
         </div>
       </nav>
       <div className={styles.main_input_box}>
