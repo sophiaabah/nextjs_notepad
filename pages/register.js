@@ -1,15 +1,48 @@
 import Head from "next/head";
 import styles from "../styles/forms.module.css";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  function onNameChange(e) {
+    setName(e.target.value);
+  }
+
+  function onEmailChange(e) {
+    setEmail(e.target.value);
+  }
+
+  function onPasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
+  async function onRegister(e) {
+    e.preventDefault();
+    const response = await fetch("http://localhost:3000/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+      }),
+    });
+
+    const data = await response.json();
+    if (data.id) {
+      router.push("/");
+    }
+  }
   return (
     <div className={styles.register_box}>
       <main className="box pa4 black-80">
-        <form
-          className="measure center"
-          // onSubmit={onRegister}
-        >
+        <form className="measure center" onSubmit={onRegister}>
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
             <legend className="f3 fw5 ph0 mh0">Create an account</legend>
             <div className="mv3">
@@ -17,9 +50,9 @@ export default function Register() {
                 {`What's your name?`}
               </label>
               <input
-                // onChange={onNameChange}
+                onChange={onNameChange}
                 className={styles.input}
-                // value={name}
+                value={name}
                 type="text"
                 name="name"
                 id="name"
@@ -30,9 +63,9 @@ export default function Register() {
                 Email address
               </label>
               <input
-                // onChange={onEmailChange}
+                onChange={onEmailChange}
                 className={styles.input}
-                // value={email}
+                value={email}
                 type="email"
                 name="email-address"
                 id="email-address"
@@ -43,18 +76,18 @@ export default function Register() {
                 Password
               </label>
               <input
-                // onChange={onPasswordChange}
+                onChange={onPasswordChange}
                 className={styles.input}
-                // value={password}
+                value={password}
                 type="password"
                 name="password"
                 id="password"
               />
             </div>
           </fieldset>
-          <Link href="/">
-            <a className={styles.btn}>Sign In</a>
-          </Link>
+          <button type="submit" className={styles.btn}>
+            Sign In
+          </button>
         </form>
       </main>
     </div>
