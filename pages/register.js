@@ -86,7 +86,7 @@ export default function Register() {
             </div>
           </fieldset>
           <button type="submit" className={styles.btn}>
-            Sign In
+            Sign up
           </button>
         </form>
       </main>
