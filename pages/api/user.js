@@ -4,11 +4,6 @@ import { withIronSessionApiRoute } from "iron-session/next";
 async function user(req, res) {
   const { method } = req;
 
-  // get user id from sessions
-  // if user id doesnt exist in sessions return null
-  // find user based on sessionUser.id
-  // return null if no user
-  //return user name and id and notes
   switch (method) {
     case "GET": {
       const sessionUser = req.session.user;

@@ -7,35 +7,29 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 import { useEffect } from "react";
 
+const colorArr = [
+  "aliceblue",
+  "beige",
+  "mistyrose",
+  "honeydew",
+  "lavenderblush",
+  "powderblue",
+  "ghostwhite",
+  "wheat",
+  "aliceblue",
+  "beige",
+  "mistyrose",
+  "honeydew",
+  "lavenderblush",
+  "powderblue",
+  "ghostwhite",
+  "wheat",
+];
+
 export default function Notes() {
-  const colorArr = [
-    "aliceblue",
-    "beige",
-    "mistyrose",
-    "honeydew",
-    "lavenderblush",
-    "powderblue",
-    "ghostwhite",
-    "wheat",
-    "aliceblue",
-    "beige",
-    "mistyrose",
-    "honeydew",
-    "lavenderblush",
-    "powderblue",
-    "ghostwhite",
-    "wheat",
-  ];
   const [value, setValue] = useState("");
   const [notes, setNotes] = useState([]);
   const [userInfo, setUserInfo] = useState({});
-
-  // fetch notes from api
-  // if notes arent available fetch from localstorage
-  // if they are set user data from api response
-  // if there are notes in localstorage send them to db
-  // then map notes from db and set into state
-  // clear localstorage
 
   useEffect(() => {
     syncData();
@@ -43,7 +37,7 @@ export default function Notes() {
 
   async function syncData() {
     const localStorageNotes = JSON.parse(localStorage.getItem("notes"));
-    const userDataResponse = await fetch("http://localhost:3000/api/user");
+    const userDataResponse = await fetch("/api/user");
     const userData = await userDataResponse.json();
 
     if (!userData && localStorageNotes !== null) {
@@ -63,16 +57,13 @@ export default function Notes() {
   }
 
   async function saveNotes(notes) {
-    const saveNotesResponse = await fetch(
-      "http://localhost:3000/api/savenotes",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          notes,
-        }),
-      }
-    );
+    const saveNotesResponse = await fetch("/api/savenotes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        notes,
+      }),
+    });
     const savedNotes = await saveNotesResponse.json();
     setNotes(savedNotes);
   }
@@ -83,56 +74,53 @@ export default function Notes() {
         text: value,
         noteId: nanoid(),
       };
+
       let clone = [newObj, ...notes];
       setNotes(clone);
-      if (!userInfo || !userInfo.name) {
+
+      if (userInfo && userInfo.name) {
+        await saveNotes(clone);
+      } else {
         localStorage.setItem("notes", JSON.stringify(clone));
       }
-      const response = await fetch("http://localhost:3000/api/savenotes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          notes: notes,
-        }),
-      });
     }
     setValue("");
-  }
-
-  function onNoteChange(e) {
-    setValue(e.target.value);
   }
 
   async function onNoteUpdate(e, i) {
     let clone = [...notes];
     clone[i].text = e.target.value;
     setNotes(clone);
-    if (!userInfo || !userInfo.name) {
+
+    if (userInfo && userInfo.name) {
+      await saveNotes(clone);
+    } else {
       localStorage.setItem("notes", JSON.stringify(clone));
     }
-    const response = await fetch("http://localhost:3000/api/savenotes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        notes: notes,
-      }),
-    });
   }
 
   async function onDelete(i) {
     let clone = [...notes];
+    let noteId = clone[i].noteId;
     clone.splice(i, 1);
     setNotes(clone);
-    if (!userInfo || !userInfo.name) {
+
+    if (userInfo && userInfo.name) {
+      const deleteNotesResponse = await fetch("/api/deletenote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          noteId: noteId,
+        }),
+      });
+      const isDeleted = await deleteNotesResponse.json();
+    } else {
       localStorage.setItem("notes", JSON.stringify(clone));
     }
-    const response = await fetch("http://localhost:3000/api/savenotes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        notes: notes,
-      }),
-    });
+  }
+
+  function onNoteChange(e) {
+    setValue(e.target.value);
   }
 
   return (
