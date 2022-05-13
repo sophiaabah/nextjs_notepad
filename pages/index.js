@@ -42,31 +42,39 @@ export default function Notes() {
   }, []);
 
   async function syncData() {
-    const notesFromStorage = JSON.parse(localStorage.getItem("notes"));
-    const response = await fetch("http://localhost:3000/api/user");
-    const user = await response.json();
-    console.log(user);
+    const localStorageNotes = JSON.parse(localStorage.getItem("notes"));
+    const userDataResponse = await fetch("http://localhost:3000/api/user");
+    const userData = await userDataResponse.json();
 
-    if (!user && notesFromStorage !== null) {
-      setNotes(notesFromStorage); // untested
+    if (!userData && localStorageNotes !== null) {
+      setNotes(localStorageNotes); // untested
     }
-    if (user) {
+    if (userData) {
+      setNotes(userData.notes);
       setUserInfo({
-        name: user.name,
-        id: user.id,
+        name: userData.name,
+        id: userData.id,
       });
-      if (notesFromStorage !== null && notesFromStorage.length) {
-        const response = await fetch("http://localhost:3000/api/savenotes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            notes: notes,
-          }),
-        });
+      if (localStorageNotes !== null && localStorageNotes.length) {
+        await saveNotes(localStorageNotes);
+        localStorage.removeItem("notes");
       }
     }
-    setNotes(user.notes);
-    localStorage.removeItem("notes");
+  }
+
+  async function saveNotes(notes) {
+    const saveNotesResponse = await fetch(
+      "http://localhost:3000/api/savenotes",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          notes,
+        }),
+      }
+    );
+    const savedNotes = await saveNotesResponse.json();
+    setNotes(savedNotes);
   }
 
   async function newNote() {
@@ -77,7 +85,7 @@ export default function Notes() {
       };
       let clone = [newObj, ...notes];
       setNotes(clone);
-      if (!userInfo && !userInfo.name) {
+      if (!userInfo || !userInfo.name) {
         localStorage.setItem("notes", JSON.stringify(clone));
       }
       const response = await fetch("http://localhost:3000/api/savenotes", {
@@ -99,7 +107,7 @@ export default function Notes() {
     let clone = [...notes];
     clone[i].text = e.target.value;
     setNotes(clone);
-    if (!userInfo && !userInfo.name) {
+    if (!userInfo || !userInfo.name) {
       localStorage.setItem("notes", JSON.stringify(clone));
     }
     const response = await fetch("http://localhost:3000/api/savenotes", {
@@ -115,7 +123,7 @@ export default function Notes() {
     let clone = [...notes];
     clone.splice(i, 1);
     setNotes(clone);
-    if (!userInfo && !userInfo.name) {
+    if (!userInfo || !userInfo.name) {
       localStorage.setItem("notes", JSON.stringify(clone));
     }
     const response = await fetch("http://localhost:3000/api/savenotes", {

@@ -11,13 +11,22 @@ async function savenotes(req, res) {
         notes.map((note) =>
           prisma.note.upsert({
             where: { noteId: note.noteId },
-            update: { text: note.text, ownerId: session.user.id },
-            create: note,
+            update: {
+              text: note.text,
+              ownerId: session.user.id,
+            },
+            create: {
+              text: note.text,
+              ownerId: session.user.id,
+              noteId: note.noteId,
+            },
           })
         )
       );
-      console.log(response);
-      return res.status(200).json("Success");
+      const userNotes = await prisma.note.findMany({
+        where: { ownerId: session.user.id },
+      });
+      return res.status(200).json(userNotes);
     }
     default:
       return res.status(404).json({ error: "Not found" });
