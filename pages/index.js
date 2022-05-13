@@ -4,8 +4,7 @@ import Link from "next/link";
 import { GrSync } from "react-icons/gr";
 import { TiDelete } from "react-icons/ti";
 import { nanoid } from "nanoid";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 const colorArr = [
   "aliceblue",
@@ -30,6 +29,15 @@ export default function Notes() {
   const [value, setValue] = useState("");
   const [notes, setNotes] = useState([]);
   const [userInfo, setUserInfo] = useState({});
+  const [searchValue, setSearchValue] = useState("");
+
+  // usememo returns a value
+  const filteredNotes = useMemo(() => {
+    if (searchValue === "") {
+      return notes;
+    }
+    return notes.filter((item) => item.text.includes(searchValue));
+  }, [searchValue, notes]);
 
   useEffect(() => {
     syncData();
@@ -87,8 +95,9 @@ export default function Notes() {
     setValue("");
   }
 
-  async function onNoteUpdate(e, i) {
+  async function onNoteUpdate(e, noteId) {
     let clone = [...notes];
+    let i = clone.findIndex((item) => item.noteId === noteId);
     clone[i].text = e.target.value;
     setNotes(clone);
 
@@ -99,9 +108,9 @@ export default function Notes() {
     }
   }
 
-  async function onDelete(i) {
+  async function onDelete(noteId) {
     let clone = [...notes];
-    let noteId = clone[i].noteId;
+    let i = clone.findIndex((item) => item.noteId === noteId);
     clone.splice(i, 1);
     setNotes(clone);
 
@@ -119,6 +128,10 @@ export default function Notes() {
     }
   }
 
+  function onSearchChange(e) {
+    setSearchValue(e.target.value);
+  }
+
   function onNoteChange(e) {
     setValue(e.target.value);
   }
@@ -130,13 +143,17 @@ export default function Notes() {
       </Head>
       <nav className={styles.nav_box}>
         <p>keeper.</p>
-        <input placeholder="Search" />
+        <input
+          onChange={onSearchChange}
+          placeholder="Search"
+          value={searchValue}
+        />
         <div className={styles.btn_box}>
           <button className={styles.btn_box_btn1} title="Sync Changes">
             <GrSync />
           </button>
           {userInfo && userInfo.name ? (
-            <Link href="/signin">
+            <Link href="/api/logout">
               <a className={styles.btn_box_btn2}>Log out</a>
             </Link>
           ) : (
@@ -159,21 +176,21 @@ export default function Notes() {
         </div>
       </div>
       <div className={styles.notes_box}>
-        {notes.map((item, i) => {
+        {filteredNotes.map((item, i) => {
           return (
             <div
               className={styles.notes_box_div}
               style={{ backgroundColor: colorArr[i] }}
-              key={item.id}
+              key={item.noteId}
             >
               <textarea
                 style={{ backgroundColor: colorArr[i] }}
-                onChange={(e) => onNoteUpdate(e, i)}
+                onChange={(e) => onNoteUpdate(e, item.noteId)}
                 value={item.text}
               ></textarea>
               <button
                 className="four"
-                onClick={() => onDelete(i)}
+                onClick={() => onDelete(item.noteId)}
                 title="Remove note"
               >
                 <TiDelete style={{ fontSize: "1.2rem" }} />
@@ -185,14 +202,3 @@ export default function Notes() {
     </div>
   );
 }
-
-// can i seperate the commands in my block into functions for better readabiltity
-// is or the same as and in if statements
-// log out functionality, test other users in db, test without signing in?
-// should i run my whole async block everytime state changes? is it bad for performance
-// how do we test what happens when a user isnt found on the first db request? use my phone?
-// some final design refining
-// just do more random testing and code reviewing and refining too
-// color array
-// the search functionality
-// i feel weird about sessions. what do we do
