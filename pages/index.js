@@ -44,9 +44,15 @@ export default function Notes() {
   }, []);
 
   async function syncData() {
+    let userData;
+    let userDataResponse;
     const localStorageNotes = JSON.parse(localStorage.getItem("notes"));
-    const userDataResponse = await fetch("/api/user");
-    const userData = await userDataResponse.json();
+    try {
+      userDataResponse = await fetch("/api/user"); //error claims my fetch produces html not real json???
+      userData = await userDataResponse.json();
+    } catch (error) {
+      console.log("oops", error, userData);
+    }
 
     if (!userData && localStorageNotes !== null) {
       setNotes(localStorageNotes); // untested

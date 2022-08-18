@@ -1,10 +1,13 @@
 import Head from "next/head";
+import { useToast } from "@chakra-ui/react";
 import styles from "../styles/forms.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function SignIn() {
+  const toast = useToast();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -19,7 +22,7 @@ export default function SignIn() {
 
   async function onSignin(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/signin", {
+    const response = await fetch("/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -27,10 +30,18 @@ export default function SignIn() {
         password: password,
       }),
     });
-
     const data = await response.json();
+
     if (data.id) {
       router.push("/");
+    } else {
+      toast({
+        title: "Login unsuccesful",
+        description: "Email or password incorrect",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   }
 
