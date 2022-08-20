@@ -44,7 +44,6 @@ async function signin(req, res) {
         return res.status(404).json({ error: "Not found" });
     }
   } catch (error) {
-    console.error(error);
     return res.status(500).send({ message: "Request failed." });
   }
 }

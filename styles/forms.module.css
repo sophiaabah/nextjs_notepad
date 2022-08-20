@@ -26,9 +26,8 @@ font-family: 'Poppins', sans-serif;
   border-radius: 5px;
   cursor: pointer;
   padding: 0.4rem 1.3rem;
-  font-size: 0.95rem;
-  
-    
+  font-size: 0.95rem;  
+  margin-bottom: 0.5rem;
 }
 
 .input{
@@ -38,4 +37,9 @@ font-family: 'Poppins', sans-serif;
   width: 100%;
   line-height: 1.5;
   padding: 0.4rem;
+}
+
+.message {
+  margin-top: 0.5rem;
+  margin-bottom: 1.7rem;
 }

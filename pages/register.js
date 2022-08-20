@@ -24,7 +24,7 @@ export default function Register() {
 
   async function onRegister(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/register", {
+    const response = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -44,7 +44,7 @@ export default function Register() {
       <main className="box pa4 black-80">
         <form className="measure center" onSubmit={onRegister}>
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-            <legend className="f3 fw5 ph0 mh0">Create an account</legend>
+            <legend className="f2 fw2 ph0 mh0">Create an account</legend>
             <div className="mv3">
               <label className="db fw5 lh-copy f5" htmlFor="name">
                 {`What's your name?`}

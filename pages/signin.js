@@ -1,15 +1,13 @@
 import Head from "next/head";
-import { useToast } from "@chakra-ui/react";
 import styles from "../styles/forms.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function SignIn() {
-  const toast = useToast();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(false);
   const router = useRouter();
 
   function onEmailChange(e) {
@@ -35,13 +33,7 @@ export default function SignIn() {
     if (data.id) {
       router.push("/");
     } else {
-      toast({
-        title: "Login unsuccesful",
-        description: "Email or password incorrect",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
+      setMessage(true);
     }
   }
 
@@ -50,7 +42,7 @@ export default function SignIn() {
       <main className="pa4 black-80">
         <form className="measure center" onSubmit={onSignin}>
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-            <legend className="f3 fw5 ph0 mh0">Sign In</legend>
+            <legend className="f2 fw2 ph0 mh0">Sign In</legend>
             <div className="mt3">
               <label className="db fw5 lh-copy f5" htmlFor="email-address">
                 Email address
@@ -78,8 +70,18 @@ export default function SignIn() {
               />
             </div>
           </fieldset>
+          <div>
+            {message ? (
+              <h4 className={styles.message}>
+                Login unsuccessful. Please try again.
+              </h4>
+            ) : (
+              <h1></h1>
+            )}
+          </div>
+
           <div className="">
-            <button type="submit" className={styles.btn}>
+            <button title="Sign in" type="submit" className={styles.btn}>
               Sign In
             </button>
           </div>
