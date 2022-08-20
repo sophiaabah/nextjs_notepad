@@ -12,10 +12,16 @@ export default function SignIn() {
 
   function onEmailChange(e) {
     setEmail(e.target.value);
+    if (message) {
+      setMessage(false);
+    }
   }
 
   function onPasswordChange(e) {
     setPassword(e.target.value);
+    if (message) {
+      setMessage(false);
+    }
   }
 
   async function onSignin(e) {
@@ -28,11 +34,14 @@ export default function SignIn() {
         password: password,
       }),
     });
+
     const data = await response.json();
 
     if (data.id) {
       router.push("/");
     } else {
+      setEmail("");
+      setPassword("");
       setMessage(true);
     }
   }
