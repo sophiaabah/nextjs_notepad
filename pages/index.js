@@ -101,7 +101,7 @@ export default function Notes() {
     setValue("");
   }
 
-  async function onNoteUpdate(e, noteId) {
+  const debouncedFunction = debounce(async function onNoteUpdate(e, noteId) {
     let clone = [...notes];
     let i = clone.findIndex((item) => item.noteId === noteId);
     clone[i].text = e.target.value;
@@ -112,7 +112,20 @@ export default function Notes() {
     } else {
       localStorage.setItem("notes", JSON.stringify(clone));
     }
-  }
+  }, 5000);
+
+  // async function onNoteUpdate(e, noteId) {
+  //   let clone = [...notes];
+  //   let i = clone.findIndex((item) => item.noteId === noteId);
+  //   clone[i].text = e.target.value;
+  //   setNotes(clone);
+
+  //   if (userInfo && userInfo.name) {
+  //     await saveNotes(clone);
+  //   } else {
+  //     localStorage.setItem("notes", JSON.stringify(clone));
+  //   }
+  // }
 
   async function onDelete(noteId) {
     let clone = [...notes];
