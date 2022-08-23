@@ -4,7 +4,8 @@ import Link from "next/link";
 import { GrSync } from "react-icons/gr";
 import { TiDelete } from "react-icons/ti";
 import { nanoid } from "nanoid";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
+import debounce from "lodash.debounce";
 
 const colorArr = [
   "aliceblue",
@@ -70,18 +71,6 @@ export default function Notes() {
     }
   }
 
-  async function saveNotes(notes) {
-    const saveNotesResponse = await fetch("/api/savenotes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        notes,
-      }),
-    });
-    const savedNotes = await saveNotesResponse.json();
-    setNotes(savedNotes);
-  }
-
   async function newNote() {
     if (value.trim()) {
       var newObj = {
@@ -101,18 +90,36 @@ export default function Notes() {
     setValue("");
   }
 
-  async function onNoteUpdate(e, noteId) {
+  const onNoteUpdate = async (e, noteId) => {
     let clone = [...notes];
     let i = clone.findIndex((item) => item.noteId === noteId);
     clone[i].text = e.target.value;
     setNotes(clone);
 
     if (userInfo && userInfo.name) {
-      await saveNotes(clone);
+      debouncedFunction(clone);
     } else {
       localStorage.setItem("notes", JSON.stringify(clone));
     }
+  };
+
+  async function saveNotes(notes) {
+    const saveNotesResponse = await fetch("/api/savenotes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        notes,
+      }),
+    });
+    const savedNotes = await saveNotesResponse.json();
   }
+
+  const debouncedFunction = useCallback(
+    debounce((notes) => {
+      saveNotes(notes);
+    }, 2000),
+    []
+  );
 
   async function onDelete(noteId) {
     let clone = [...notes];
