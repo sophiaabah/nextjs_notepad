@@ -1,6 +1,7 @@
 import styles from "../styles/notes.module.css";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { GrSync } from "react-icons/gr";
 import { TiDelete } from "react-icons/ti";
 import { nanoid } from "nanoid";
@@ -162,9 +163,16 @@ export default function Notes() {
           value={searchValue}
         />
         <div className={styles.btn_box}>
-          <button className={styles.btn_box_btn1} title="Sync Changes">
-            <GrSync />
-          </button>
+          {userInfo && userInfo.name ? (
+            <div className={styles.btn_box1}>
+              <p className={styles.btn_box_text}>{userInfo.name[0]}</p>
+            </div>
+          ) : (
+            <div >
+              
+            </div>
+          )}
+
           {userInfo && userInfo.name ? (
             <Link href="/api/logout">
               <a className={styles.btn_box_btn2}>Log out</a>

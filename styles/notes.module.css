@@ -37,13 +37,9 @@
 
 }
 
-.btn_box_btn1 {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  align-self: flex-end;
-  font-size: "1.3rem"
 
+.btn_box_text {
+  text-transform: uppercase;
 }
 
 .btn_box_btn2 {
@@ -57,12 +53,13 @@
 
 }
 
-.btn_box > div {
-  font-weight: 450;
-  border-radius: 120%;
-  background-color: rgb(209, 124, 209);
-  padding: 0.5rem 0.8rem;
-  color: white;
+.btn_box1 {
+  font-weight: 600;
+  border-radius: 100%;
+  
+  background-color: rgb(255, 233, 233);
+  padding: 0rem 1.5rem;
+  color: rgb(124, 46, 111);
 }
 
 .main_input_box {
